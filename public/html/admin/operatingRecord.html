@@ -1,0 +1,24 @@
+<div class="row pd-top-2">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            操作记录
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped">
+                <tbody>
+                <tr>
+                    <td class="text-center">时间</td>
+                    <td class="text-center">用户名</td>
+                    <td class="text-center">操作记录</td>
+                </tr>
+                <tr ng-repeat="li in vm.list">
+                    <td class="text-center">{{li.createAt | date:'yyyy-MM-dd&nbspHH:mm:ss'}}</td>
+                    <td class="text-center">{{li.username}}</td>
+                    <td class="text-center">{{li.oprateContent | operatingRecordFilter}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <!--<paging ng-if="vm.page" next="{{vm.page}}"></paging>-->
+        </div>
+    </div>
+</div>

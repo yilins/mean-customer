@@ -1,0 +1,23 @@
+doctype html
+html(ng-app='admin')
+  head
+    title= title
+    link(rel='stylesheet', href='/lib/bootstrap3/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/lib/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/css/main.css')
+    link(rel='stylesheet', href='/css/SBAdmin.css')
+  body
+    block content
+    script(src='/lib/jquery.js')
+    script(src='/lib/angular/angular.min.js')
+    script(src='/lib/angular-ui-router/angular-ui-router.min.js')
+    script(src='/lib/angular-cookies/angular-cookies.min.js')
+    script(src='/lib/oclazyLoad/ocLazyLoad.min.js')
+    script(src='/lib/bootstrap3/js/bootstrap.min.js')
+    script(src='/lib/angular-strap/angular-strap.min.js')
+    script(src='/lib/angular-strap/angular-strap.tpl.min.js')
+
+    script(src='/javascripts/adminconfig.js')
+    script(src='/javascripts/constant/constant.js')
+    script(src='/javascripts/filter/admin-filter.js')
+

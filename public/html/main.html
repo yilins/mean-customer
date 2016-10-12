@@ -1,0 +1,88 @@
+<div id="wrapper"  style="opacity: 0.9;">
+    <!-- nav -->
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="" class="navbar-brand">客户管理系统</a>
+        </div>
+
+        <!-- user info -->
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown pull-right" >
+                <a role="button" data-toggle="dropdown"  data-target="#" class="dropdown-toggle" >
+                    <i class="fa fa-user fa-fw"></i><span>{{vm.user.username}}</span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li ui-sref-active="active">
+                        <a ui-sref="main.changePassword({username:vm.user.username})" >修改密码</a>
+                    </li>
+                    <li>
+                    <a class="dropdown-toggle" ng-click="logout()">注销</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- sidebar -->
+        <div class="navbar-default sidebar ng-isolate-scope" >
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="accordion">
+                    <li ui-sref-active="active" class="active">
+                        <a ui-sref="main.home"><i class="fa fa-home fa-fw"></i> 欢迎页</a>
+                    </li>
+                    <li>
+                        <a data-toggle="collapse" data-target="#collapseOne" data-parent="#accordion" style="cursor:pointer">
+                             <i class="fa fa-wrench fa-fw"></i> 客户信息<span class="fa arrow"></span>
+                        </a>
+                        <ul id="collapseOne" class="nav nav-second-level collapse" >
+                            <li ui-sref-active="active">
+                                 <a ui-sref="main.customInformation">客户信息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a data-toggle="collapse" data-target="#collapseTwo" data-parent="#accordion" style="cursor:pointer">
+                            <i class="fa fa-wrench fa-fw"></i> 发货信息 <span class="fa arrow"></span>
+                        </a>
+                        <ul id="collapseTwo" class="nav nav-second-level collapse" >
+                            <li ui-sref-active="active">
+                                <a ui-sref="main.undelivered">待发货信息</a>
+                                <a ui-sref="main.delivered">已发货信息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li ng-if="vm.user.role==10">
+                        <a data-toggle="collapse" data-target="#collapseThree" data-parent="#accordion" style="cursor:pointer">
+                            <i class="fa fa-wrench fa-fw"></i> 后台管理 <span class="fa arrow"></span>
+                        </a>
+                        <ul id="collapseThree" class="nav nav-second-level collapse" >
+                            <li ui-sref-active="active">
+                                <a ui-sref="main.manager">账号管理</a>
+                                <a ui-sref="main.rolesList">角色列表</a>
+                                <a ui-sref="main.expressList">快递管理</a>
+                                <a ui-sref="main.goodsList">商品管理</a>
+                                <a ui-sref="main.operatingRecord">操作记录</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+    <!-- main content -->
+    <div id="page-wrapper">
+        <ui-view></ui-view>
+    </div>
+</div>
+
+
+
+
+

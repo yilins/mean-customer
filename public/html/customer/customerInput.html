@@ -1,0 +1,105 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row panel panel-default">
+            <p class="col-xs-12 panel-heading head">
+                <b class="media-middle" ng-if="!vm.id">客户录入</b>
+                <b class="media-middle" ng-if="vm.id">客户信息编辑</b>
+            </p>
+            <form name="ngForm"  class="form-horizontal" novalidate>
+              <div class="row">
+                <div class="form-group">
+                        <label class="col-xs-2 control-label">*&nbsp;客户姓名 </label>
+                        <div class="col-xs-9">
+                        <input class="form-control" name="name" type="text" autocomplete="off" maxlength="10" ng-model="vm.params.customerName" required/>
+                        <span class="error-put" ng-show="ngForm.name.$dirty && ngForm.name.$invalid">
+                        <span ng-show="ngForm.name.$error.required">姓名不能为空。</span>
+                 </span>
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label info">客户类型 </label>
+                    <div class="col-xs-9">
+                        <select class="form-control" ng-model="vm.params.customerType">
+                            <option ng-repeat=" li in vm.customerType" value="{{li.id}}"
+                                    ng-selected="li.id == vm.params.customerType">{{li.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label info">业务经办人</label>
+                    <div class="col-xs-9">
+                        <select class="form-control" ng-model="vm.params.pooxy" >
+                            <option ng-repeat="li in vm.pooxy" ng-selected="vm.params.pooxy==li.username" value="{{li.username}}">{{li.username}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label info">*&nbsp;商品</label>
+                    <div class="col-xs-9">
+                        <select class="form-control" name="goods"  ng-model="vm.params.goods" required>
+                            <option ng-repeat="li in vm.goods"
+                                    ng-selected="vm.params.goods==li.goodsName" value="{{li.goodsName}}">{{li.goodsName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                      <label class="col-xs-2 control-label">*&nbsp;数量 </label>
+                      <div class="col-xs-9">
+                          <input class="form-control" type="number" autocomplete="off" max="999" min="1" ng-model="vm.params.counts" required/>
+                        <span class="error-put" ng-show="ngForm.name.$dirty && ngForm.name.$invalid">
+                        <span ng-show="ngForm.name.$error.required">数量不能为空。</span>
+                        </span>
+                      </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label info">*&nbsp;电话 </label>
+                    <div class="col-xs-9">
+                    <input class="form-control" type="text" autocomplete="off" ng-model="vm.params.mobile" maxlength="11" numberic-input required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label info">*&nbsp;送货日</label>
+                    <div class="col-xs-9">
+                    <input class="form-control date"  type="text" autocomplete="off"
+                                 data-bs-datepicker data-date-format="yyyy-MM-dd" data-date-type="number"
+                                 ng-model="vm.params.sendCargoAt" autoclose="true"  />
+                    </div>
+                </div>
+                  <div class="form-group">
+                    <label class="col-xs-2 control-label info">*&nbsp;快递公司 </label>
+                      <div class="col-xs-9">
+                        <select class="form-control" name="express" ng-model="vm.params.expressage"  required>
+                        <option ng-repeat="li in vm.expressage" ng-selected="vm.params.expressage==li.expressName"  value="{{li.expressName}}">{{li.expressName}}</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-xs-2 control-label info">*&nbsp;地址  </label>
+                      <div class="col-xs-9">
+                          <input class="form-control address"  autocomplete="off" maxlength="40"
+                                 type="text" name="adress" ng-model="vm.params.adress" required/>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-xs-2 control-label info">备注 </label>
+                      <div class="col-xs-9">
+                      <textarea class="form-control no-float text-top higher remark" placeholder="请输入文字（200字以内）"
+                          name="remark" ng-model="vm.params.remark" maxlength="200"></textarea>
+                      </div>
+                  </div>
+
+
+
+
+                <div class="col-xs-6 text-right border-far">
+                    <button class="btn btn-success btn-sm btn-margin" ng-if="vm.status==0" ng-click="vm.add()"  ng-disabled="ngForm.$invalid" >新增</button>
+                    <button class="btn btn-success btn-sm" ng-if="vm.status==1" ng-click="vm.update()" ng-disabled="ngForm.$invalid"  >保存</button>
+                </div>
+                <div class="col-xs-6 text-left border-far">
+                    <button class="btn btn-danger btn-sm" ui-sref="main.customInformation">取消</button>
+                </div>
+              </div>
+            </form>
+        </div>
+    </div>
+</div>

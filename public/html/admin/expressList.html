@@ -1,0 +1,43 @@
+<div class="row pd-top-2">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><b>快递列表</b>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="expressName" class="col-sm-2 control-label">快递名</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="expressName" placeholder="express name" ng-model="vm.data.expressName">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-success" ng-click="vm.add()">新增</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">快递公司</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                    <tr ng-repeat="li in vm.list track by $index">
+                        <td class="text-center">{{$index+1}}</td>
+                        <td class="text-center">{{li.expressName}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-danger btn-xs" ng-click="vm.expressDelete(li._id)">删除</button>
+                        </td>
+                    </tr>
+                </table>
+                <!--<paging ng-if="vm.page" next="{{vm.page}}"></paging>-->
+            </div>
+        </div>
+    </div>
+</div>

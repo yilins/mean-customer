@@ -1,0 +1,129 @@
+
+<div class="row pd-top-2">
+    <div class="col-lg-12">
+        <div class="row panel panel-default">
+            <div class="panel-body">
+               <form class="form-inline form-search" role="form">
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                            <label class="control-label">客户姓名 </label>
+                                <input class="form-control" name="name" type="text" autocomplete="off" maxlength="10" ng-model="vm.params.customerName"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label class="control-label">电话 </label>
+                                <input ng-model="vm.params.mobile" maxlength="11" class="form-control" numberic-input type="text"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                            <label class="control-label">客户类型 </label>
+                                <select class="form-control" ng-model="vm.params.customerType">
+                                    <option value="">全部</option>
+                                    <option ng-repeat=" li in vm.customerType" value="{{li.id}}"
+                                            ng-selected="li.id == vm.params.customerType">{{li.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                            <label class="control-label">商品</label>
+                                <select class="form-control" name="goods"  ng-model="vm.params.goods">
+                                    <option value="">全部</option>
+                                    <option ng-repeat="li in vm.goods"
+                                            ng-selected="vm.params.goods==li.goodsName" value="{{li.goodsName}}">{{li.goodsName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                            <label class="control-label">快递公司 </label>
+                                <select class="form-control" name="express" ng-model="vm.params.expressage">
+                                    <option value="">全部</option>
+                                    <option ng-repeat="li in vm.expressage" ng-selected="vm.params.expressage==li.expressName"  value="{{li.expressName}}">{{li.expressName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label">业务经办人</label>
+                                <select class="form-control" ng-model="vm.params.pooxy" >
+                                    <option value="">全部</option>
+                                    <option ng-repeat="li in vm.pooxy" ng-selected="vm.params.pooxy==li.username" value="{{li.username}}">{{li.username}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <label class="control-label">送货日&nbsp;&nbsp;</label>
+                                <input class="form-control date" type="text" autocomplete="off"
+                                       data-bs-datepicker data-date-format="yyyy-MM-dd" data-date-type="number"
+                                       ng-model="vm.params.sendCargoAt" autoclose="true"/>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row pd-top-2">
+                            <div class="col-md-12">
+                                <button class="btn btn-primary pull-right" ng-click="vm.search(vm.params)">搜索</button>
+                                <button class="btn btn-danger pull-right btn-margin" ng-click="vm.clear()">清空</button>
+                            </div>
+                        </div>
+                    </form>
+           </div>
+        </div>
+        <div class=" row panel panel-default">
+        <div class="panel-heading">
+                客户信息
+                <div class="btn-group pull-right">
+                    <button class="btn btn-primary btn-xs" ui-sref="main.customerInput">
+                        <i class="fa fa-plus-square fa-fw"></i>添加
+                    </button>
+                </div>
+        </div>
+        <div class="panel-body ">
+            <table class="table table-bordered table-striped text-center">
+                <thead>
+                <tr>
+                    <th class="text-center">操作</th>
+                    <th class="text-center">序号</th>
+                    <th class="text-center">客户姓名</th>
+                    <th class="text-center">电话</th>
+                    <th class="text-center">商品</th>
+                    <th class="text-center">数量</th>
+                    <th class="text-center">地址</th>
+                    <th class="text-center">客户类型</th>
+                    <th class="text-center">快递公司</th>
+                    <th class="text-center">送货日</th>
+                    <th class="text-center">业务经办人</th>
+                    <th class="text-center">备注</th>
+                    <th class="text-center">录入时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in vm.list track by $index">
+                    <td>
+                        <button  ui-sref="main.customerInput({id: item._id})" class="btn btn-success btn-xs" type="button">编辑</button>
+                        <!--<button ng-click="vm.customerDelete(item._id)" class="btn btn-danger btn-xs">删除</button>-->
+                    </td>
+                    <td>{{$index+1}}</td>
+                    <td>{{item.customerName}}</td>
+                    <td>{{item.mobile}}</td>
+                    <td>{{item.goods}}</td>
+                    <td>{{item.counts}}</td>
+                    <td>{{item.adress}}</td>
+                    <td>{{item.customerType}}</td>
+                    <td>{{item.expressage}}</td>
+                    <td>{{item.sendCargoAt | date :'yyyy.MM.dd'}}</td>
+                    <td>{{item.pooxy}}</td>
+                    <td title="{{item.remark}}">{{item.remark}}</td>
+                    <td>{{item.createAt | date :'yyyy.MM.dd'}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <!--<paging ng-if="vm.page" next="{{vm.page}}"></paging>-->
+        </div>
+        </div>
+    </div>
+</div>
